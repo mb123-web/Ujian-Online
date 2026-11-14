@@ -1,0 +1,155 @@
+/* Custom styles for UjianOnline */
+
+:root {
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode */
+body.dark {
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+body.dark .bg-white { background-color: #1e293b !important; }
+body.dark .bg-slate-50 { background-color: #0f172a !important; }
+body.dark .border-slate-100,
+body.dark .border-slate-200 { border-color: #334155 !important; }
+body.dark .text-slate-900 { color: #f1f5f9 !important; }
+body.dark .text-slate-800 { color: #e2e8f0 !important; }
+body.dark .text-slate-700 { color: #cbd5e1 !important; }
+body.dark .text-slate-600 { color: #94a3b8 !important; }
+body.dark .text-slate-500 { color: #64748b !important; }
+body.dark .bg-slate-100 { background-color: #1e293b !important; }
+body.dark input,
+body.dark textarea {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+/* Smooth page transitions */
+section {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Soal card animation */
+.soal-enter {
+  animation: soalSlide 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes soalSlide {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Option hover */
+.opsi-btn {
+  transition: var(--transition-smooth);
+}
+
+.opsi-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15);
+}
+
+.opsi-btn.selected {
+  border-color: #0ea5e9;
+  background-color: #f0f9ff;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+}
+
+body.dark .opsi-btn.selected {
+  background-color: #0c4a6e;
+  border-color: #38bdf8;
+}
+
+/* Nomor soal grid */
+.nomor-btn {
+  transition: var(--transition-smooth);
+}
+
+.nomor-btn.answered {
+  background-color: #0ea5e9;
+  color: white;
+  border-color: #0ea5e9;
+}
+
+.nomor-btn.flagged {
+  background-color: #f59e0b;
+  color: white;
+  border-color: #f59e0b;
+}
+
+.nomor-btn.current {
+  ring: 2px;
+  box-shadow: 0 0 0 2px #0ea5e9;
+}
+
+/* Focus mode */
+.focus-mode #sidebarSoal {
+  display: none !important;
+}
+
+.focus-mode #soalContainer {
+  max-width: 100%;
+}
+
+/* Warning pulse */
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); }
+  50% { box-shadow: 0 0 0 12px rgba(239, 68, 68, 0); }
+}
+
+.warning-active {
+  animation: pulse-red 1.2s infinite;
+}
+
+/* Progress bar glow */
+#progressBar {
+  box-shadow: 0 0 12px rgba(14, 165, 233, 0.4);
+}
+
+/* Offline indicator */
+.offline-badge {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ef4444;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 100;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Confetti-like success (simple) */
+@keyframes celebrate {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.celebrate {
+  animation: celebrate 0.4s ease;
+}
+
+/* Disable selection during exam */
+.exam-mode {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.exam-mode img {
+  pointer-events: none;
+}
