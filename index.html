@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UjianOnline — Platform Ujian Modern</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { 50:'#f0f9ff',100:'#e0f2fe',200:'#bae6fd',300:'#7dd3fc',400:'#38bdf8',500:'#0ea5e9',600:'#0284c7',700:'#0369a1',800:'#075985',900:'#0c4a6e' },
+            calm: { 50:'#f0fdfa',100:'#ccfbf1',200:'#99f6e4',300:'#5eead4',400:'#2dd4bf',500:'#14b8a6',600:'#0d9488',700:'#0f766e' }
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary-500 to-calm-500 flex items-center justify-center text-white font-bold text-lg">U</div>
+        <span class="font-semibold text-lg tracking-tight">Ujian<span class="text-primary-600">Online</span></span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="showSection('siswa')" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 transition">Siswa</button>
+        <button onclick="showSection('guru')" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 transition">Guru</button>
+        <button id="themeToggle" class="p-2 rounded-lg hover:bg-slate-100 transition" title="Dark Mode">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Landing -->
+  <section id="landing" class="min-h-screen pt-24 pb-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 text-primary-700 text-sm font-medium mb-6">
+        <span class="w-2 h-2 rounded-full bg-primary-500 animate-pulse"></span>
+        Platform Ujian Modern & Nyaman
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-4">
+        Ujian yang <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-calm-500">serius</span>,<br>
+        tapi tetap enak dikerjakan
+      </h1>
+      <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-10">
+        Desain tenang, animasi halus, deteksi kecurangan real-time, dan notifikasi suara pintar.
+        Dibuat agar siswa fokus tanpa merasa tertekan.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button onclick="showSection('siswa')" class="px-8 py-3.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-semibold shadow-lg shadow-primary-200 transition transform hover:-translate-y-0.5">
+          Mulai sebagai Siswa
+        </button>
+        <button onclick="showSection('guru')" class="px-8 py-3.5 rounded-xl bg-white border border-slate-200 hover:border-primary-300 text-slate-700 font-semibold transition">
+          Masuk sebagai Guru
+        </button>
+      </div>
+
+      <!-- Feature cards -->
+      <div class="grid md:grid-cols-3 gap-6 mt-20 text-left">
+        <div class="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition">
+          <div class="w-11 h-11 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Anti-Curang Pintar</h3>
+          <p class="text-slate-600 text-sm">Bunyi berbeda saat keluar app vs putus internet. Semua kejadian tercatat real-time.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition">
+          <div class="w-11 h-11 rounded-xl bg-calm-100 text-calm-600 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Nyaman & Fokus</h3>
+          <p class="text-slate-600 text-sm">Warna tenang, animasi soft, mode fokus, dan progress yang memotivasi tanpa mengganggu.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition">
+          <div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Kontrol Guru Lengkap</h3>
+          <p class="text-slate-600 text-sm">Buat ujian, upload soal, pantau live, dan lihat log kecurangan secara detail.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SISWA SECTION ==================== -->
+  <section id="siswa" class="hidden min-h-screen pt-20 pb-10 px-4">
+    <div class="max-w-md mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-slate-900">Masuk Ujian</h2>
+        <p class="text-slate-500 mt-1">Masukkan kode ujian dari guru</p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 space-y-5">
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1.5">Nama Lengkap</label>
+          <input id="siswaNama" type="text" placeholder="Contoh: Budi Santoso" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-400 focus:ring-2 focus:ring-primary-100 outline-none transition">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1.5">Kode Ujian</label>
+          <input id="siswaKode" type="text" placeholder="Contoh: MTK-2024" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-400 focus:ring-2 focus:ring-primary-100 outline-none transition uppercase tracking-wider">
+        </div>
+        <button onclick="mulaiUjianSiswa()" class="w-full py-3.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-semibold transition shadow-lg shadow-primary-100">
+          Mulai Ujian
+        </button>
+      </div>
+
+      <p class="text-center text-sm text-slate-400 mt-6">
+        Pastikan koneksi stabil & jangan keluar dari halaman selama ujian.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== GURU SECTION ==================== -->
+  <section id="guru" class="hidden min-h-screen pt-20 pb-10 px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">Dashboard Guru</h2>
+          <p class="text-slate-500">Kelola ujian & pantau siswa</p>
+        </div>
+        <button onclick="showBuatUjian()" class="px-5 py-2.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-medium transition">
+          + Buat Ujian Baru
+        </button>
+      </div>
+
+      <!-- List ujian -->
+      <div id="listUjian" class="grid gap-4"></div>
+
+      <!-- Form buat ujian (hidden by default) -->
+      <div id="formBuatUjian" class="hidden bg-white rounded-2xl border border-slate-100 shadow-sm p-6 mt-6">
+        <h3 class="font-semibold text-lg mb-4">Buat Ujian Baru</h3>
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-sm font-medium mb-1">Judul Ujian</label>
+            <input id="judulUjian" type="text" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 outline-none focus:border-primary-400" placeholder="Matematika Kelas 10">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Kode Ujian</label>
+            <input id="kodeUjian" type="text" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 outline-none focus:border-primary-400 uppercase" placeholder="MTK-10">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Durasi (menit)</label>
+            <input id="durasiUjian" type="number" value="60" min="5" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 outline-none focus:border-primary-400">
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-2">Soal (satu soal per baris, format: pertanyaan | A | B | C | D | jawaban)</label>
+          <textarea id="soalInput" rows="8" class="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:border-primary-400 font-mono text-sm" placeholder="Berapakah 2+2? | 3 | 4 | 5 | 6 | B
+Ibukota Indonesia? | Jakarta | Bandung | Surabaya | Medan | A"></textarea>
+        </div>
+
+        <div class="flex gap-3">
+          <button onclick="simpanUjian()" class="px-5 py-2.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-medium">Simpan Ujian</button>
+          <button onclick="hideBuatUjian()" class="px-5 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50">Batal</button>
+        </div>
+      </div>
+
+      <!-- Live Monitor -->
+      <div id="monitorArea" class="hidden mt-10">
+        <h3 class="font-semibold text-lg mb-4">Live Monitor Siswa</h3>
+        <div id="liveSiswa" class="space-y-3"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== HALAMAN UJIAN (SISWA) ==================== -->
+  <section id="halamanUjian" class="hidden fixed inset-0 z-50 bg-slate-50 flex flex-col">
+    <!-- Top bar -->
+    <div class="bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-primary-100 text-primary-600 flex items-center justify-center font-bold text-sm">U</div>
+        <div>
+          <div id="ujianJudul" class="font-semibold text-sm">Matematika</div>
+          <div id="ujianSiswaNama" class="text-xs text-slate-500">Budi</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="text-right">
+          <div class="text-xs text-slate-500">Sisa Waktu</div>
+          <div id="timerDisplay" class="font-mono font-bold text-lg text-primary-600">60:00</div>
+        </div>
+        <button id="btnFokus" onclick="toggleFokusMode()" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 hover:bg-slate-200 transition">Fokus</button>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="h-1.5 bg-slate-100">
+      <div id="progressBar" class="h-full bg-gradient-to-r from-primary-500 to-calm-400 transition-all duration-500" style="width:0%"></div>
+    </div>
+
+    <!-- Main content -->
+    <div class="flex-1 overflow-hidden flex">
+      <!-- Soal area -->
+      <div class="flex-1 overflow-y-auto p-4 md:p-8">
+        <div class="max-w-2xl mx-auto">
+          <div class="flex items-center justify-between mb-6">
+            <span id="soalNumber" class="text-sm font-medium text-slate-500">Soal 1 dari 10</span>
+            <button id="btnFlag" onclick="toggleFlag()" class="flex items-center gap-1.5 text-sm text-slate-500 hover:text-amber-500 transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/></svg>
+              <span id="flagText">Tandai</span>
+            </button>
+          </div>
+
+          <div id="soalContainer" class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 md:p-8 mb-6 transition-all duration-300">
+            <!-- Soal akan diisi JS -->
+          </div>
+
+          <div class="flex justify-between gap-3">
+            <button id="btnPrev" onclick="prevSoal()" class="px-5 py-2.5 rounded-xl border border-slate-200 hover:bg-white transition font-medium text-sm disabled:opacity-40">← Sebelumnya</button>
+            <button id="btnNext" onclick="nextSoal()" class="px-5 py-2.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-medium text-sm transition">Selanjutnya →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar nomor soal -->
+      <div id="sidebarSoal" class="hidden md:block w-56 bg-white border-l border-slate-100 p-4 overflow-y-auto shrink-0">
+        <div class="text-xs font-medium text-slate-500 mb-3">Navigasi Soal</div>
+        <div id="gridNomor" class="grid grid-cols-4 gap-2"></div>
+        <button onclick="submitUjian()" class="w-full mt-6 py-2.5 rounded-xl bg-calm-600 hover:bg-calm-700 text-white text-sm font-medium transition">
+          Kumpulkan Jawaban
+        </button>
+      </div>
+    </div>
+
+    <!-- Warning banner (hidden) -->
+    <div id="warningBanner" class="hidden absolute top-20 left-1/2 -translate-x-1/2 bg-red-500 text-white px-5 py-2.5 rounded-xl shadow-lg text-sm font-medium z-50 animate-bounce">
+      ⚠️ Kamu keluar dari halaman ujian!
+    </div>
+  </section>
+
+  <!-- Modal hasil -->
+  <div id="modalHasil" class="hidden fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 text-center shadow-xl">
+      <div class="w-16 h-16 rounded-full bg-calm-100 text-calm-600 flex items-center justify-center mx-auto mb-4 text-2xl">✓</div>
+      <h3 class="text-xl font-bold mb-1">Ujian Selesai!</h3>
+      <p id="hasilSkor" class="text-3xl font-bold text-primary-600 my-3">0/10</p>
+      <p class="text-slate-500 text-sm mb-6">Jawabanmu sudah tersimpan. Terima kasih!</p>
+      <button onclick="location.reload()" class="px-6 py-2.5 rounded-xl bg-primary-600 text-white font-medium">Kembali ke Beranda</button>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/proctor.js"></script>
+  <script src="js/audio.js"></script>
+</body>
+</html>
